@@ -1,5 +1,11 @@
 package com.Zac.apitest.beans;
 
+/*
+简单对象：POJO类，
+必须拥有一个空参constructor和一个有参构造器
+最好定义get和set方法
+
+ */
 
 
 //传感器温度读书的数据类型
