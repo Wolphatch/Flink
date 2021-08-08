@@ -115,3 +115,20 @@ public class WindowTest3_EventTimeWindow {
  * 这样可以使晚来但是更早发生的数据被搜集到桶内
  * https://wbice.cn/article/Flink-Watermark.html#3-4%E3%80%81%E6%B0%B4%E4%BD%8D%E7%BA%BF%E8%A7%A3%E5%86%B3%E4%B9%B1%E5%BA%8F%E7%9A%84%E5%8E%9F%E7%90%86
  **/
+
+/**
+ * 当多并行度的时候，（以这个程序作为例子）
+ * 数据源采用轮询将数据传给四个map算子
+ * 每一个算子的watermark为算子当前的watermark。
+ * 但对于下游的keyby来说，watermark为上一步map算子的四个watermark最小的一个。只有当四个map算子中最小的watermark都超过窗口之后，keyby+window才会输出
+ */
+
+/**
+ * 事件时间：1547718799
+ * watermark： 2s
+ * watermark时间： 1547718797
+ * 允许迟到时间： 60s
+ * 窗口：1547718795 - 1547718810
+ * 第一个窗口关闭时间：= 1547718810（第一个窗口结束） - 2 （watermark延迟） +60 （允许迟到时间）
+ * 在窗口结束到窗口关闭前，每来一个数据，窗口就会输出一次
+ */
